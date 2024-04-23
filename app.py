@@ -10,6 +10,10 @@ def index():
 def about():
     return render_template('index.html',general='About green baboon')
 
+@app.route('/<int:id>')
+def show(id):
+    return render_template('id.html',id=id)
+
 app.run(debug=True,host='0.0.0.0',port=80)
 
 
