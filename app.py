@@ -4,15 +4,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('card.html',general='Comming Soon')
+    return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return render_template('index.html',general='About green baboon')
-
-@app.route('/<int:id>')
-def show(id):
-    return render_template('id.html',id=id)
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 app.run(debug=True,host='0.0.0.0',port=80)
 

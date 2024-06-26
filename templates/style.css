@@ -1,0 +1,160 @@
+html, body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    box-sizing: border-box;
+    height: 100%;
+    background-color: #000;
+    background-image: radial-gradient(#11581E, #041607), url(https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Inconsolata', Helvetica, sans-serif;
+    font-size: 1.5rem;
+    color: rgba(128, 255, 128, 0.8);
+    text-shadow: 0 0 1ex rgba(51, 255, 51, 1), 0 0 2px rgba(255, 255, 255, 0.8);
+    overflow: hidden; /* Убирает стандартную прокрутку */
+}
+
+.noise {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif);
+    background-repeat: repeat;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.02;
+}
+.overlay {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
+    background-size: auto 4px;
+    z-index: 0;
+}
+.overlay::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(0deg, transparent 0%, rgba(32, 128, 32, 0.2) 2%, rgba(32, 128, 32, 0.8) 3%, rgba(32, 128, 32, 0.2) 3%, transparent 100%);
+    background-repeat: no-repeat;
+    animation: scan 7.5s linear infinite;
+}
+@keyframes scan {
+    0% {
+        background-position: 0 -100vh;
+    }
+    35%, 100% {
+        background-position: 0 100vh;
+    }
+}
+.terminal {
+    text-align: center;
+    box-sizing: inherit;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    padding: 4rem;
+
+    text-transform: uppercase;
+    overflow-y: auto; /* Позволяет прокрутку содержимого */
+    z-index: 1; /* Содержимое над шумом и оверлеем */
+}
+.output {
+    color: rgba(128, 255, 128, 0.8);
+    text-shadow: 0 0 1px rgba(51, 255, 51, 0.4), 0 0 2px rgba(255, 255, 255, 0.8);
+}
+.output::before {
+    content: "> ";
+}
+a {
+    color: #fff;
+    text-decoration: none;
+}
+/* a::before {
+    content: "[";
+}
+a::after {
+    content: "]";
+} */
+.errorcode
+/*    color: #fff;*/
+/*}*/
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.image-block {
+    display: inline-block;
+    margin: 20px;
+    border: 2px solid rgba(128, 255, 128, 0.8);
+    box-shadow: 0 0 10px rgba(51, 255, 51, 0.5), 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.image-block img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.image-block img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(51, 255, 51, 0.8), 0 0 25px rgba(255, 255, 255, 1); /* Увеличенная тень при наведении */
+}
+
+
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Момент передома */
+
+.social {
+    display: flex;
+    justify-content: center; /* Центрирование иконок по горизонтали */
+    gap: 20px;
+
+}
+.social a {
+    text-decoration: none;
+    color: inherit;
+}
