@@ -1,7 +1,3 @@
-#!/bin/bash
-
-IMAGE_NAME="my-flask-app"
-
-docker build -t $IMAGE_NAME .
-
-docker run -d -p 8080:80 $IMAGE_NAME
+docker stop darknesswave
+docker rm darknesswave
+docker run -it -d -v $(pwd):/opt/app --restart=always -p 8081:80 --name=ruina_counter $(docker build -q .)
