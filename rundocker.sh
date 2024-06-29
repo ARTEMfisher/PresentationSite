@@ -2,7 +2,7 @@
 
 IMAGE_NAME="my_site_image"
 CONTAINER_NAME="my_site_container"
-HOST_PORT=3000  # Измените на другой свободный порт, например, 3001
+HOST_PORT=80  # Измените на другой свободный порт, например, 3001
 CONTAINER_PORT=3000
 
 # Строим Docker-образ
