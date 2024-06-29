@@ -1,15 +1,22 @@
-FROM python:3.9.16-alpine3.17
+FROM python:3.8-slim
 
-COPY . /opt/tmp/
-WORKDIR /opt/tmp
+ENV PYTHONUNBUFFERED 1
 
-RUN apk update
-RUN apk upgrade
-RUN apk add --no-cache ffmpeg
-RUN apk add build-base linux-headers
+WORKDIR /app
 
-RUN python3 -m pip install -r requirements.txt
+COPY requirements.txt /app/
 
-RUN rm -r /opt/tmp
-WORKDIR /opt/app
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
+        python3-dev \
+    && pip install --no-cache-dir -r requirements.txt \
+    && apt-get remove -y --purge \
+        build-essential \
+        python3-dev \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY . /app/
 CMD python3 main.py
