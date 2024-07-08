@@ -12,4 +12,4 @@ RUN python3 -m pip install -r requirements.txt
 
 RUN rm -r /opt/tmp
 WORKDIR /opt/app
-CMD python3 main.py
+CMD ["python3", "main.py"]
