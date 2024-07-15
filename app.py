@@ -3,17 +3,8 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 def log_ip(ip_address):
-    log_entry = {'ip': ip_address}
-    try:
-        with open('ips.json', 'r') as file:
-            data = json.load(file)
-    except FileNotFoundError:
-        data = []
-
-    data.append(log_entry)
-
-    with open('ips.json', 'w') as file:
-        json.dump(data, file, indent=4)
+    with open('ips.txt', 'a') as file:
+        file.write(f"{ip_address}\n")
 
 
 
